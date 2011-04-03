@@ -1,4 +1,8 @@
 TimeControl::Application.routes.draw do
+  get "report/index"
+
+  root :to => "report#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

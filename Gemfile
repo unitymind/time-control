@@ -5,12 +5,12 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+#gem 'mysql2'
 gem 'sqlite3'
 
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'rails3-jquery-autocomplete', :path => '~/developing/projects/gems/rails3-jquery-autocomplete'
-gem 'simple_form'
+gem 'rails3-jquery-autocomplete' #, :path => '~/developing/projects/gems/rails3-jquery-autocomplete'
 gem 'colored'
 gem 'yaml_db'
 
@@ -32,11 +32,11 @@ gem 'nokogiri'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'rspec-rails'
-#  gem 'rspec-rails-matchers', :git => 'git://github.com/unitymind/rspec-rails-matchers.git'
+  gem 'rspec-rails-matchers', :git => 'git://github.com/unitymind/rspec-rails-matchers.git'
   gem 'watchr'
   gem 'spork', '~> 0.9.0.rc'
   gem 'nifty-generators'
   gem 'ruby-debug19'
-  gem 'rspec-rails-matchers', :path => '~/developing/projects/gems/rspec-rails-matchers'
+#  gem 'rspec-rails-matchers', :path => '~/developing/projects/gems/rspec-rails-matchers'
 #  gem 'metric_fu'
 end
