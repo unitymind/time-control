@@ -10,9 +10,10 @@ gem 'sqlite3'
 
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'rails3-jquery-autocomplete' #, :path => '~/developing/projects/gems/rails3-jquery-autocomplete'
+gem 'rails3-jquery-autocomplete', :path => '~/developing/projects/gems/rails3-jquery-autocomplete'
 gem 'colored'
 gem 'yaml_db'
+gem 'yajl-ruby'
 
 # Deploy with Capistrano
 # gem 'capistrano'

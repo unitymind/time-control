@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110402152816) do
+ActiveRecord::Schema.define(:version => 20110403183923) do
 
   create_table "departments", :force => true do |t|
     t.string "name", :null => false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110402152816) do
     t.boolean  "no_work",     :default => true
   end
 
+  add_index "timesheet_by_days", ["day"], :name => "index_timesheet_by_days_on_day"
   add_index "timesheet_by_days", ["employee_id", "day"], :name => "index_timesheet_by_days_on_employee_id_and_day", :unique => true
 
 end

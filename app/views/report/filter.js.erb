@@ -1,0 +1,15 @@
+<%- if @result.empty? %>
+    $('#table-header').html('<h2>По вашим критериям ничего не найдено</h2>');
+<%- else %>
+    <%- unless @is_personal %>
+        $('#table-header').html('<h2>Отчет с <%= params[:period_from].to_date %> по <%= params[:period_to].to_date %>. <%= @department_name %>.</h2>');
+        $('#datatable-common').show();
+        commonTable.fnClearTable();
+        commonTable.fnAddData(<%= raw encode_to_json(@result) %>);
+    <%- else %>
+        $('#table-header').html('<h2>Отчет с <%= params[:period_from].to_date %> по <%= params[:period_to].to_date %>. <%= @employee_name %>.</h2>');
+        $('#datatable-personal').show();
+        personalTable.fnClearTable();
+        personalTable.fnAddData(<%= raw encode_to_json(@result) %>);
+    <%-end %>
+<%- end %>

@@ -1,5 +1,7 @@
 TimeControl::Application.routes.draw do
   get "report/index"
+  get "report/autocomplete_employee_name"
+  post "report/filter"
 
   root :to => "report#index"
 

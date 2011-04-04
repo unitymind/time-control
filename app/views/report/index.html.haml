@@ -1,2 +1,26 @@
-%h1 Report#index
-%p Find me in app/views/report/index.html.haml
+- title("TimeControl - учет времени доступа", false)
+= form_tag '/report/filter', :remote => true, :id => 'filter-form' do |f|
+  %table.filter
+    %tr
+      %td{:colspan => 2, :style => 'text-align: center'}
+        %b Период отчетности:
+      %td
+        %b Отдел:
+      %td{:colspan => 2}
+        %b Сотрудник:
+    %tr
+      %td
+        = label_tag(:period_from_label, "c")
+        = text_field_tag(:period_from)
+      %td
+        = label_tag(:period_from_label, "по")
+        = text_field_tag(:period_to)
+      %td
+        = select_tag(:department_id, options_for_select([['Все', '']] + Department.all.map {|m| [m.name, m.id]}) )
+      %td
+        = autocomplete_field_tag(:employee, nil, "/report/autocomplete_employee_name", :id_element => "#employee_id", :filter_by => "#department_id")
+        = hidden_field_tag(:employee_id)
+      %td= submit_tag("Показать отчет")
+  %div#table-header
+  %div#datatable-common
+  %div#datatable-personal

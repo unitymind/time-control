@@ -1,7 +1,7 @@
 body {
   background-color: #4b7399;
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px; }
+  font-size: 12px; }
 
 a {
   color: blue; }
@@ -59,3 +59,30 @@ a {
     margin: 8px 10px; }
   .error_messages ul {
     margin: 0; }
+
+input[type=text] {
+  border: solid 1px #848388; }
+
+#period_from, #period_to {
+  width: 68px;
+  padding: 1px 4px 1px 4px;
+  margin: 0px 5px 0px 5px; }
+
+#employee {
+  width: 300px; }
+
+.ui-autocomplete {
+  max-height: 200px;
+  max-width: 300px;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+  /* add padding to account for vertical scrollbar */
+  padding-right: 20px; }
+
+#datatable-common, #datatable-personal {
+  display: none;
+  margin-top: 15px; }
+
+#table-header {
+  text-align: center; }
