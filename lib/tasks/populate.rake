@@ -50,9 +50,8 @@ namespace :db do
 
     end
 
-    desc "Generate (randomly) timeevents data"
     task :timeevents => :environment do
-      puts "\n" + "** ".bold + "Генерируем данные о доступе за последние два года...\n".green.bold
+      puts "\n" + "** ".bold + "Генерируем данные о доступе за последние два месяца...\n".green.bold
 
       start_work = 8.hour
       end_work = 18.hour

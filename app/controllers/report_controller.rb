@@ -36,7 +36,6 @@ class ReportController < ApplicationController
         @result = to_common_json(result)
       end
     end
-#    render :json => Yajl::Encoder.encode(@result)
   end
 
   private
