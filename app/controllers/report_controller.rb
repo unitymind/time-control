@@ -11,27 +11,26 @@ class ReportController < ApplicationController
       period = params[:period_from].to_date..params[:period_to].to_date
 
       unless params[:employee_id].blank?
-        @result = to_personal_json(TimesheetByDay.where(:day => period, :employee_id => params[:employee_id]).order('day').all)
+        @result = to_personal_json(TimesheetByDay.in_period(period).by_employee(params[:employee_id]).all)
         @employee_name = Employee.find(params[:employee_id]).name
         @is_personal = true
       else
-        late_rel = TimesheetByDay.where(:day => period, :has_late => true)
-        work_rel = TimesheetByDay.where(:day => period, :no_work => false)
-
+        late_rel = TimesheetByDay.in_period(period).late
+        work_rel = TimesheetByDay.in_period(period).work
+#
         unless params[:department_id].blank?
-          ids = Employee.where(:department_id => params[:department_id]).select('id').all.map { |m| m.id }
-          late_rel = late_rel.where(:employee_id => ids)
-          work_rel = work_rel.where(:employee_id => ids)
+          late_rel = late_rel.by_department(params[:department_id])
+          work_rel = work_rel.by_department(params[:department_id])
           @department_name = Department.find(params[:department_id]).name
         end
 
         result = {}
         period.to_a.each { |day| result[day] = {} }
 
-        late_rel.group(:day).count.each { |day, count| result[day.to_date][:late_count] = count }
-        late_rel.group(:day).average(:late_value).each { |day, value| result[day.to_date][:late_value] = value.to_f.round(2) }
-        work_rel.group(:day).count.each { |day, count| result[day.to_date][:work_count] = count }
-        work_rel.group(:day).average(:work_time).each { |day, value| result[day.to_date][:work_time] = value.to_f.round(2) }
+        late_rel.count.each { |day, count| result[day.to_date][:late_count] = count }
+        late_rel.average(:late_value).each { |day, value| result[day.to_date][:late_value] = value.to_f.round(2) }
+        work_rel.count.each { |day, count| result[day.to_date][:work_count] = count }
+        work_rel.average(:work_time).each { |day, value| result[day.to_date][:work_time] = value.to_f.round(2) }
 
         @result = to_common_json(result)
       end
